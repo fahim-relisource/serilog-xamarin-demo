@@ -62,13 +62,18 @@
     <PackageReference Include="Serilog.Sinks.Xamarin">
       <Version>0.1.37</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Android.Arch.Work.Runtime">
+      <Version>1.0.0.3</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FutureWorker.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FutureWork.cs" />
     <Compile Include="Services\OurLoggerService.cs" />
   </ItemGroup>
   <ItemGroup>

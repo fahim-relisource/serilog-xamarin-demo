@@ -10,6 +10,7 @@
 		<Label Text="Welcome to Xamarin.Forms!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
+		<Button x:Name="RunServicebutton" Text="Run Service" Clicked="RunServicebutton_Clicked" />
 		<Button x:Name="RunAsyncButton" Text="Run Async Method" Clicked="RunAsyncButton_Clicked" />
 	</StackLayout>
 

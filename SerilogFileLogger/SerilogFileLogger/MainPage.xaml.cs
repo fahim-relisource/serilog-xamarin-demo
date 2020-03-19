@@ -13,6 +13,7 @@ namespace SerilogFileLogger
 	{
 		private readonly IOurLoggerService ourLogger;
 		private static int taskCounter = 1;
+		private static int serviceCounter = 1;
 
 		public MainPage()
 		{
@@ -43,6 +44,14 @@ namespace SerilogFileLogger
 			var random = new Random();
 			await Task.Delay(random.Next(1, 20) * 1000);
 			ourLogger.LogInformation("LongRunningTask End Task:" + taskId);
+		}
+
+		private void RunServicebutton_Clicked(object sender, EventArgs e)
+		{
+			ourLogger.LogInformation("RunServiceButton Clicked");
+			var futureService = DependencyService.Get<IFutureWork>();
+			futureService.SetNewFutureWork(serviceCounter);
+			serviceCounter++;
 		}
 	}
 }
