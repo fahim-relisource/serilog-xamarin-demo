@@ -7,9 +7,11 @@
              x:Class="SerilogFileLogger.MainPage">
 
 	<StackLayout>
-		<Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+		<Image x:Name="DownloadImageFile" 
+			   Source="instruction.png"
+			   HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand"  />
+		<Button x:Name="FileDownloadButton" Text="Download File" Clicked="FileDownloadButton_Clicked" />
 		<Button x:Name="RunServicebutton" Text="Run Service" Clicked="RunServicebutton_Clicked" />
 		<Button x:Name="RunAsyncButton" Text="Run Async Method" Clicked="RunAsyncButton_Clicked" />
 	</StackLayout>

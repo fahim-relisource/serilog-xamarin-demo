@@ -1,4 +1,5 @@
 ﻿using SerilogFileLogger.Services;
+using SerilogFileLogger.Services.Impl;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -14,12 +15,14 @@ namespace SerilogFileLogger
 		private readonly IOurLoggerService ourLogger;
 		private static int taskCounter = 1;
 		private static int serviceCounter = 1;
+		private static int fileCounter = 1;
 
 		public MainPage()
 		{
 			InitializeComponent();
 			ourLogger = DependencyService.Get<IOurLoggerService>();
 			ourLogger.LogInformation("MainPage Constructed");
+			
 		}
 
 		private async void RunAsyncButton_Clicked(object sender, EventArgs e)
@@ -52,6 +55,23 @@ namespace SerilogFileLogger
 			var futureService = DependencyService.Get<IFutureWork>();
 			futureService.SetNewFutureWork(serviceCounter);
 			serviceCounter++;
+		}
+
+		private async void FileDownloadButton_Clicked(object sender, EventArgs e)
+		{
+			string fileUrl = $"https://dummyimage.com/2560x1600/08f24a/e61c6d.jpg&text=File+Number+{fileCounter}";
+			ourLogger.LogInformation($"File Download Clicked For Downloading file {fileUrl}");
+			var fileDownloadService = new DownloadService(DependencyService.Get<IFileService>());
+			await Task.Factory.StartNew(async () =>
+			{
+				string filePath = await fileDownloadService.DownloadFileAsync(fileUrl, $"FileNumber{fileCounter}.jpg");
+				if(filePath != null)
+				{
+					ourLogger.LogInformation($"Downloaded file location: {filePath}");
+					DownloadImageFile.Source = ImageSource.FromFile(filePath);
+				}
+			});
+			fileCounter++;
 		}
 	}
 }
